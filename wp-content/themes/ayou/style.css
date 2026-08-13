@@ -98,11 +98,11 @@ p{margin:0;}
 }
 .hero-veil{
   position:absolute; inset:0; z-index:1; pointer-events:none;
-  /* 文字が乗る左 45% までは白を残し、そこから一気に抜いて写真を見せる。
-     一律に薄めると見出し（淡いグレー）のコントラストが落ちるため。 */
+  /* 写真は左 35% がカーテンだけの余白（人物は右側）。その余白に文字を置く。
+     文字が乗る側は白を残し、人物のいる右側は抜いて写真をそのまま見せる。 */
   background:
-    linear-gradient(to bottom, rgba(255,255,255,.80) 0%, rgba(255,255,255,.40) 14%, rgba(255,255,255,0) 30%),
-    linear-gradient(100deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.95) 44%, rgba(255,255,255,.45) 60%, rgba(255,255,255,0) 82%);
+    linear-gradient(to bottom, rgba(255,255,255,.72) 0%, rgba(255,255,255,.32) 15%, rgba(255,255,255,0) 32%),
+    linear-gradient(100deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.91) 42%, rgba(255,255,255,.28) 58%, rgba(255,255,255,0) 76%);
 }
 .hero-cap{
   position:absolute; z-index:2; right:16px; bottom:16px;
@@ -127,9 +127,12 @@ p{margin:0;}
   padding-top:44px; padding-bottom:88px;
 }
 .hero-copy > *{max-width:780px;}
+/* ヒーローだけ内側の幅を広げ、文字を左に寄せる。
+   見出しの行末が観葉植物に届くとコントラストが 3:1 を割るため。 */
+.hero .inner{max-width:1120px;}
 .hero .eb{font-size:10.5px; letter-spacing:.26em; color:var(--aqua-deep); display:flex; align-items:center; gap:14px;}
 .hero .eb::after{content:""; height:1px; width:56px; background:var(--aqua);}
-.hero h1{font-size:clamp(30px,4vw,50px); line-height:1.6; margin:30px 0 0;}
+.hero h1{font-size:clamp(30px,3.6vw,44px); line-height:1.6; margin:30px 0 0;}
 .hero .sub{
   font-family:var(--serif); font-size:clamp(16px,1.7vw,20px); color:var(--ink);
   line-height:1.95; margin-top:24px; letter-spacing:.08em;
