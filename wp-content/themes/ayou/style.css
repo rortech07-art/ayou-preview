@@ -102,7 +102,7 @@ p{margin:0;}
      文字が乗る側は白を残し、人物のいる右側は抜いて写真をそのまま見せる。 */
   background:
     linear-gradient(to bottom, rgba(255,255,255,.72) 0%, rgba(255,255,255,.32) 15%, rgba(255,255,255,0) 32%),
-    linear-gradient(100deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.91) 42%, rgba(255,255,255,.28) 58%, rgba(255,255,255,0) 76%);
+    linear-gradient(100deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.93) 45%, rgba(255,255,255,.28) 60%, rgba(255,255,255,0) 78%);
 }
 .hero-cap{
   position:absolute; z-index:2; right:16px; bottom:16px;
