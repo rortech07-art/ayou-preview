@@ -98,9 +98,11 @@ p{margin:0;}
 }
 .hero-veil{
   position:absolute; inset:0; z-index:1; pointer-events:none;
+  /* 文字が乗る左 45% までは白を残し、そこから一気に抜いて写真を見せる。
+     一律に薄めると見出し（淡いグレー）のコントラストが落ちるため。 */
   background:
-    linear-gradient(to bottom, rgba(255,255,255,.92) 0%, rgba(255,255,255,.55) 16%, rgba(255,255,255,0) 34%),
-    linear-gradient(100deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.91) 34%, rgba(255,255,255,.5) 62%, rgba(255,255,255,.06) 100%);
+    linear-gradient(to bottom, rgba(255,255,255,.80) 0%, rgba(255,255,255,.40) 14%, rgba(255,255,255,0) 30%),
+    linear-gradient(100deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.95) 44%, rgba(255,255,255,.45) 60%, rgba(255,255,255,0) 82%);
 }
 .hero-cap{
   position:absolute; z-index:2; right:16px; bottom:16px;
@@ -133,9 +135,14 @@ p{margin:0;}
   line-height:1.95; margin-top:24px; letter-spacing:.08em;
 }
 .hero .acts{display:flex; flex-wrap:wrap; gap:14px; margin-top:38px;}
+/* 11.5px は小さい文字なので 4.5:1 が必要。--muted(#6E7F86) は白背景でも 4.16 しかなく届かない */
 .hero .note{
-  font-size:11.5px; color:var(--muted); margin-top:22px;
-  padding-left:14px; border-left:2px solid var(--aqua);
+  font-size:11.5px; color:var(--ink); margin-top:22px;
+  padding:9px 14px 9px 14px; border-left:2px solid var(--aqua);
+  /* 写真の暗い部分に重なっても読めるよう、薄い白を敷く。
+     ヴェールが濃い位置では地色に溶けて見えない。写真を差し替えても崩れない。 */
+  background:rgba(255,255,255,.86);
+  align-self:flex-start;
 }
 
 /* 読み込み時のフェードアップ（1回のみ） */
@@ -340,8 +347,8 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--aqua-deep); outlin
   .hero{min-height:min(90vh,760px);}
   .hero-veil{
     background:linear-gradient(to bottom,
-      rgba(255,255,255,.97) 0%, rgba(255,255,255,.94) 44%,
-      rgba(255,255,255,.62) 68%, rgba(255,255,255,.08) 100%);
+      rgba(255,255,255,.96) 0%, rgba(255,255,255,.93) 50%,
+      rgba(255,255,255,.50) 68%, rgba(255,255,255,0) 88%);
   }
   .hd{padding:24px 0 0;}
   .hd-in{gap:14px;}
@@ -686,6 +693,29 @@ a.ph{text-decoration:none;}
 }
 .gal img{width:100%; height:100%; object-fit:cover; display:block;}
 .greeting img.portrait{width:100%; height:auto;}
+
+/* ---------- サロンの内観（TOP） ----------
+   1 枚目を大きく（3列×2行）、残り 4 枚を 3列×1行で組む。
+   行の高さを固定して object-fit:cover に任せ、写真の縦横比に左右されないようにする。 */
+.gal-room{
+  display:grid; grid-template-columns:repeat(6,1fr); gap:14px;
+  grid-auto-rows:212px; margin-top:44px;
+}
+.gal-room figure{position:relative; margin:0; grid-column:span 3; overflow:hidden; background:var(--mist);}
+.gal-room figure:first-child{grid-row:span 2;}
+.gal-room img{width:100%; height:100%; object-fit:cover; display:block;}
+.gal-room .ph{width:100%; height:100%; min-height:0;}
+.gal-room figcaption{
+  position:absolute; left:0; bottom:0; background:rgba(255,255,255,.92);
+  font-size:11px; letter-spacing:.14em; color:var(--aqua-deep); padding:7px 14px;
+}
+.gal-note{margin:22px 0 0; font-size:13px; color:var(--muted); line-height:1.9;}
+@media (max-width:900px){
+  .gal-room{grid-template-columns:1fr 1fr; grid-auto-rows:132px; gap:10px; margin-top:34px;}
+  .gal-room figure{grid-column:span 1;}
+  .gal-room figure:first-child{grid-column:span 2; grid-row:span 2;}
+  .gal-room figcaption{font-size:10.5px; padding:6px 11px;}
+}
 
 /* ---------- 店舗情報（複数店舗対応） ---------- */
 .shops{display:grid; gap:24px; margin-top:44px;}
